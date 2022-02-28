@@ -6,8 +6,10 @@ const cardModel = require("../Models/cardModel");
 const createCard = async function (req, res) {
   try {
     if (req.user) { //It is use for authentitication
-      const card = req.body; // requesting data from client body 
-      let obj = { ...card, customerID: req.user.userId }  // set CustomersID 
+      const card = req.body; // requesting data from client body
+      const cardDatadb = await cardModel.find();
+      
+      let obj = { ...card, cardNumber: cardDatadb.length+1 , customerID: req.user.userId }  // set CustomersID 
       let savedCustomer = await cardModel.create(obj); // creating card details
       return res.send({ data: savedCustomer }); // response of created data
     } else {

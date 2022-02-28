@@ -3,7 +3,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const cardSchema=new mongoose.Schema({
     cardNumber:{
-        type:String
+        type:Number
     },
     cardType:{
         type:String
